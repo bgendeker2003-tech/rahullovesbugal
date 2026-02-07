@@ -1,0 +1,2000 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Love Story — Rahul & Bugal</title>
+<style>
+/* ================= GLOBAL STYLES ================= */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --rose: #e8a0bf;
+  --rose-gold: #b76e79;
+  --blush: #f8c8dc;
+  --cream: #fff5f5;
+  --deep-rose: #c2185b;
+  --soft-pink: #fce4ec;
+  --gold: #d4a574;
+  --dark: #1a0a10;
+  --glass-bg: rgba(255, 245, 245, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Lora', serif;
+  background: #0a0005;
+  color: #fff;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a0a10;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rose-gold);
+  border-radius: 3px;
+}
+
+/* ================= CURSOR SPARKLE ================= */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffb6c1, #ff69b4);
+  z-index: 99999;
+  animation: sparkleAnim 0.8s ease-out forwards;
+}
+
+@keyframes sparkleAnim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0) translateY(-30px); opacity: 0; }
+}
+
+/* Heart burst on click */
+.heart-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  font-size: 20px;
+  animation: heartFloat 1.5s ease-out forwards;
+}
+
+@keyframes heartFloat {
+  0% { transform: scale(0.5) translateY(0); opacity: 1; }
+  100% { transform: scale(1.2) translateY(-120px) rotate(20deg); opacity: 0; }
+}
+
+/* ================= MUSIC TOGGLE ================= */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--rose);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  color: var(--rose);
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.music-toggle:hover {
+  background: var(--rose);
+  color: #fff;
+  transform: scale(1.1);
+}
+.music-toggle.visible {
+  display: flex;
+}
+
+/* ================= PASSWORD SCENE ================= */
+#password-scene {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.5s ease, visibility 1.5s ease;
+}
+
+#password-scene.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cinema-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--rose);
+  text-shadow: 0 0 40px rgba(232,160,191,0.5), 0 0 80px rgba(232,160,191,0.3);
+  margin-bottom: 50px;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  text-align: center;
+  padding: 0 20px;
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 40px rgba(232,160,191,0.5), 0 0 80px rgba(232,160,191,0.3); }
+  100% { text-shadow: 0 0 60px rgba(232,160,191,0.8), 0 0 120px rgba(232,160,191,0.5), 0 0 160px rgba(232,160,191,0.2); }
+}
+
+.password-box {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.password-box p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--blush);
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.password-input-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 50px;
+  border: 2px solid var(--rose-gold);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 4px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.password-input-wrap input:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 20px rgba(232,160,191,0.3);
+}
+
+.password-input-wrap input::placeholder {
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+}
+
+.unlock-btn {
+  background: linear-gradient(135deg, var(--rose-gold), var(--deep-rose));
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 2px;
+}
+
+.unlock-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(183,110,121,0.4);
+}
+
+.password-hint {
+  color: var(--rose);
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  min-height: 25px;
+  transition: opacity 0.3s;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+}
+
+/* White flash transition */
+.white-flash {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s;
+}
+.white-flash.active {
+  opacity: 1;
+}
+
+/* ================= MAIN CONTENT ================= */
+#main-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+#main-content.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ================= SCENE 1 — HERO ================= */
+#scene1 {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #2a0a1a 0%, #0a0005 70%);
+}
+
+.petal-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--rose);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.6;
+  animation: petalFall linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes petalFall {
+  0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(110vh) rotate(720deg) scale(0.5); opacity: 0; }
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+  animation: zoomIn 3s ease-out;
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(1.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.hero-content h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--rose);
+  text-shadow: 0 0 40px rgba(232,160,191,0.6);
+  margin-bottom: 30px;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.hero-content h1 .heart-emoji {
+  display: inline-block;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.typewriter-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--blush);
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+  min-height: 80px;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--rose);
+  vertical-align: text-bottom;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,50% { opacity: 1; }
+  51%,100% { opacity: 0; }
+}
+
+.floating-hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  color: var(--rose);
+  opacity: 0.3;
+  animation: floatHeart linear infinite;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.2; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: bounce 2s infinite;
+  color: var(--rose);
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+@keyframes bounce {
+  0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-15px); }
+  60% { transform: translateX(-50%) translateY(-7px); }
+}
+
+/* ================= SCENE 2 — VALENTINE TIMELINE ================= */
+#scene2 {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #0a0005 0%, #1a0a15 50%, #0a0005 100%);
+  position: relative;
+}
+
+.scene-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.scene-header h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--rose);
+  text-shadow: 0 0 30px rgba(232,160,191,0.4);
+}
+
+.scene-header .subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--blush);
+  margin-top: 10px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--rose-gold), var(--rose), var(--rose-gold), transparent);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-card {
+  flex: 1;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 25px 30px;
+  margin: 0 30px;
+  transition: all 0.4s;
+  position: relative;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(232,160,191,0.2);
+  border-color: var(--rose);
+}
+
+.timeline-card .day-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.timeline-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--rose);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.timeline-card p {
+  color: var(--blush);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 20px rgba(232,160,191,0.6);
+  z-index: 2;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%,100% { box-shadow: 0 0 20px rgba(232,160,191,0.6); }
+  50% { box-shadow: 0 0 40px rgba(232,160,191,0.9), 0 0 60px rgba(232,160,191,0.4); }
+}
+
+.timeline-spacer {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    flex-direction: row;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 12px;
+  }
+  .timeline-spacer {
+    display: none;
+  }
+  .timeline-item {
+    padding-left: 50px;
+    position: relative;
+  }
+  .timeline-card {
+    margin: 0;
+  }
+}
+
+/* ================= SCENE 3 — MEMORY GALLERY ================= */
+#scene3 {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #0a0005 0%, #150815 50%, #0a0005 100%);
+  position: relative;
+}
+
+.gallery-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gallery-frame {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 80px rgba(232,160,191,0.05);
+}
+
+/* Vignette edges */
+.gallery-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 25px;
+}
+
+.slideshow-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 30px 25px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  z-index: 6;
+}
+
+.slide-caption p {
+  font-family: 'Dancing Script', cursive;
+  color: #fff;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.gallery-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(232,160,191,0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.gallery-dot.active {
+  background: var(--rose);
+  box-shadow: 0 0 10px rgba(232,160,191,0.5);
+  transform: scale(1.3);
+}
+
+.gallery-hearts {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
+}
+
+/* Fullscreen memory mode */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 8000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fullscreen-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.fullscreen-overlay img {
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 15px;
+  box-shadow: 0 20px 80px rgba(232,160,191,0.3);
+}
+
+.fullscreen-overlay .fs-caption {
+  font-family: 'Dancing Script', cursive;
+  color: var(--rose);
+  font-size: 1.5rem;
+  margin-top: 25px;
+  text-shadow: 0 0 20px rgba(232,160,191,0.5);
+  text-align: center;
+  padding: 0 20px;
+}
+
+.fullscreen-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--rose);
+  background: rgba(0,0,0,0.5);
+  color: var(--rose);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.fullscreen-close:hover {
+  background: var(--rose);
+  color: #fff;
+}
+
+/* ================= SCENE 4 — EMOTIONAL CHAPTER ================= */
+#scene4 {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #0a0005 0%, #1a0510 50%, #0a0005 100%);
+}
+
+.love-reasons {
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 20px 25px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s ease;
+}
+
+.reason-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reason-item:nth-child(even) {
+  transform: translateX(30px);
+}
+
+.reason-item:nth-child(even).visible {
+  transform: translateX(0);
+}
+
+.reason-heart {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  animation: heartPulse 2s ease-in-out infinite;
+}
+
+.reason-text {
+  color: var(--blush);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.our-story {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.our-story h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: var(--rose);
+  margin-bottom: 25px;
+}
+
+.our-story p {
+  color: var(--blush);
+  line-height: 2;
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* Scrolling quotes ticker */
+.quotes-ticker {
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+  margin-top: 40px;
+}
+
+.quotes-ticker::before,
+.quotes-ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+}
+
+.quotes-ticker::before {
+  left: 0;
+  background: linear-gradient(to right, #0a0005, transparent);
+}
+
+.quotes-ticker::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0005, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  width: fit-content;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  flex-shrink: 0;
+  padding: 15px 40px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--rose);
+  opacity: 0.7;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* ================= SCENE 5 — LOVE QUIZ ================= */
+#scene5 {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0a0005 0%, #120510 50%, #0a0005 100%);
+}
+
+.quiz-container {
+  max-width: 600px;
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 40px 35px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.quiz-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rose-gold), var(--rose));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.quiz-question {
+  font-family: 'Playfair Display', serif;
+  color: var(--rose);
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  min-height: 60px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quiz-option {
+  background: rgba(232,160,191,0.08);
+  border: 1px solid rgba(232,160,191,0.2);
+  border-radius: 50px;
+  padding: 14px 25px;
+  color: var(--blush);
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.quiz-option:hover {
+  background: rgba(232,160,191,0.15);
+  border-color: var(--rose);
+  transform: translateX(5px);
+}
+
+.quiz-option.correct {
+  background: rgba(76,175,80,0.2);
+  border-color: #4caf50;
+  color: #81c784;
+}
+
+.quiz-option.wrong {
+  background: rgba(244,67,54,0.15);
+  border-color: #f44336;
+  color: #ef9a9a;
+}
+
+.quiz-result {
+  display: none;
+  text-align: center;
+}
+
+.quiz-result h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: var(--rose);
+  margin-bottom: 15px;
+}
+
+.quiz-result p {
+  color: var(--blush);
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.quiz-result .score-text {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
+.quiz-restart {
+  background: linear-gradient(135deg, var(--rose-gold), var(--deep-rose));
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+
+.quiz-restart:hover {
+  transform: scale(1.05);
+}
+
+/* ================= SCENE 6 — SECRET LOVE LETTER ================= */
+#scene6 {
+  min-height: 60vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0a0005 0%, #0f0508 50%, #0a0005 100%);
+  position: relative;
+}
+
+.secret-rose {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  animation: roseGlow 2s ease-in-out infinite alternate;
+  font-size: 3.5rem;
+  transition: transform 0.3s;
+  filter: drop-shadow(0 0 15px rgba(232,160,191,0.5));
+}
+
+.secret-rose:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+@keyframes roseGlow {
+  0% { filter: drop-shadow(0 0 15px rgba(232,160,191,0.5)); }
+  100% { filter: drop-shadow(0 0 30px rgba(232,160,191,0.9)) drop-shadow(0 0 60px rgba(232,160,191,0.4)); }
+}
+
+.secret-hint {
+  color: var(--rose);
+  font-style: italic;
+  margin-top: 15px;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Letter Modal */
+.letter-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.letter-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.letter-content {
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: linear-gradient(135deg, rgba(30,10,20,0.95), rgba(40,15,25,0.95));
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 50px 40px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(232,160,191,0.2);
+}
+
+.letter-content h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: var(--rose);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.letter-text {
+  font-family: 'Dancing Script', cursive;
+  color: var(--blush);
+  font-size: 1.2rem;
+  line-height: 2;
+  overflow: hidden;
+}
+
+.letter-text span {
+  display: inline;
+  opacity: 0;
+  animation: letterReveal 0.05s ease forwards;
+}
+
+.letter-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--rose);
+  background: transparent;
+  color: var(--rose);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.letter-close:hover {
+  background: var(--rose);
+  color: #fff;
+}
+
+@keyframes letterReveal {
+  to { opacity: 1; }
+}
+
+/* ================= FINAL SCENE — PROPOSAL ================= */
+#finalScene {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-content {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.final-content h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--rose);
+  text-shadow: 0 0 50px rgba(232,160,191,0.7);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: finalReveal 2s ease 1s forwards;
+}
+
+.final-content .forever-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--blush);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  margin-top: 25px;
+  opacity: 0;
+  animation: finalReveal 2s ease 3s forwards;
+}
+
+.final-credit {
+  font-family: 'Playfair Display', serif;
+  color: var(--rose-gold);
+  font-size: 1rem;
+  margin-top: 50px;
+  opacity: 0;
+  animation: finalReveal 2s ease 5s forwards;
+  letter-spacing: 3px;
+}
+
+@keyframes finalReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.firework-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: fireworkBurst 1.5s ease-out forwards;
+}
+
+@keyframes fireworkBurst {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.final-rose-fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .password-box {
+    padding: 30px 20px;
+  }
+  .timeline-card {
+    padding: 20px;
+  }
+  .quiz-container {
+    padding: 30px 20px;
+  }
+  .letter-content {
+    padding: 35px 25px;
+  }
+  .letter-content h3 {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Music Toggle -->
+<button class="music-toggle" id="musicToggle" onclick="toggleMusic()">🎵</button>
+
+<!-- White Flash Transition -->
+<div class="white-flash" id="whiteFlash"></div>
+
+<!-- ================= PASSWORD SCENE ================= -->
+<div id="password-scene">
+  <h1 class="cinema-title">A Love Story</h1>
+  <div class="password-box" id="passwordBox">
+    <p>Enter the key to our love...</p>
+    <div class="password-input-wrap">
+      <input type="password" id="passwordInput" placeholder="••••" maxlength="10" autofocus>
+    </div>
+    <button class="unlock-btn" onclick="checkPassword()">Unlock My Heart</button>
+    <p class="password-hint" id="passwordHint"></p>
+  </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div id="main-content">
+
+  <!-- ================= SCENE 1 — HERO ================= -->
+  <section id="scene1">
+    <div class="petal-container" id="petalContainer"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="hero-content">
+      <h1>Happy Rose Day, Bugal <span class="heart-emoji">❤️</span></h1>
+      <div class="typewriter-text" id="typewriterText"></div>
+    </div>
+    
+    <div class="scroll-indicator">▼</div>
+  </section>
+
+  <!-- ================= SCENE 2 — VALENTINE TIMELINE ================= -->
+  <section id="scene2">
+    <div class="scene-header">
+      <h2>Our Valentine Week</h2>
+      <p class="subtitle">Eight days of love, one forever story</p>
+    </div>
+    
+    <div class="timeline" id="timeline">
+      <!-- Timeline items generated by JS -->
+    </div>
+  </section>
+
+  <!-- ================= SCENE 3 — MEMORY GALLERY ================= -->
+  <section id="scene3">
+    <div class="scene-header">
+      <h2>Our Memories</h2>
+      <p class="subtitle">Every moment with you is a treasure</p>
+    </div>
+    
+    <div class="gallery-container">
+      <div class="gallery-frame">
+        <div class="gallery-hearts" id="galleryHearts"></div>
+        <div class="slideshow-wrapper" id="slideshowWrapper" onclick="openFullscreen()">
+          <!-- Slides generated by JS -->
+        </div>
+      </div>
+      <div class="gallery-nav" id="galleryNav"></div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Memory Overlay -->
+  <div class="fullscreen-overlay" id="fullscreenOverlay">
+    <button class="fullscreen-close" onclick="closeFullscreen()">✕</button>
+    <img id="fullscreenImg" src="" alt="Memory">
+    <p class="fs-caption" id="fullscreenCaption"></p>
+  </div>
+
+  <!-- ================= SCENE 4 — EMOTIONAL CHAPTER ================= -->
+  <section id="scene4">
+    <div class="scene-header">
+      <h2>Why I Love You</h2>
+      <p class="subtitle">A million reasons, here are a few...</p>
+    </div>
+    
+    <div class="love-reasons" id="loveReasons">
+      <!-- Generated by JS -->
+    </div>
+    
+    <div class="our-story">
+      <h3>Our Story</h3>
+      <p>
+        From the very first moment I saw you, I knew something extraordinary was about to begin. 
+        Every laugh we've shared, every quiet moment together, every silly argument that ended in smiles — 
+        they've all woven themselves into the most beautiful love story I could ever imagine. 
+        You are not just my love, Bugal. You are my best friend, my comfort, my home. 
+        With you, every day feels like the most beautiful chapter yet to be written. 
+        And I can't wait to write a thousand more with you.
+      </p>
+    </div>
+    
+    <div class="quotes-ticker">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 5 — LOVE QUIZ ================= -->
+  <section id="scene5">
+    <div class="scene-header">
+      <h2>How Well Do You Know Us?</h2>
+      <p class="subtitle">A little quiz about our love story</p>
+    </div>
+    
+    <div class="quiz-container" id="quizContainer">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quizProgressBar"></div>
+      </div>
+      <div id="quizContent">
+        <p class="quiz-question" id="quizQuestion"></p>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <h3>You Know Our Love Perfectly ❤️</h3>
+        <div class="score-text" id="scoreText"></div>
+        <p>Every answer shows how deeply connected our hearts are.</p>
+        <p>You truly are the love of my life, Bugal!</p>
+        <button class="quiz-restart" onclick="restartQuiz()">Play Again 💕</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 6 — SECRET LOVE LETTER ================= -->
+  <section id="scene6">
+    <div class="scene-header">
+      <h2>A Secret For You</h2>
+      <p class="subtitle">Touch the rose to reveal...</p>
+    </div>
+    
+    <div class="secret-rose" onclick="openLetter()">🌹</div>
+    <p class="secret-hint">Tap the rose...</p>
+  </section>
+
+  <!-- Letter Modal -->
+  <div class="letter-modal" id="letterModal">
+    <div class="letter-content">
+      <button class="letter-close" onclick="closeLetter()">✕</button>
+      <h3>My Dearest Bugal</h3>
+      <div class="letter-text" id="letterText"></div>
+    </div>
+  </div>
+
+  <!-- ================= FINAL SCENE — PROPOSAL ENDING ================= -->
+  <section id="finalScene">
+    <div class="final-rose-fill" id="finalRoseFill"></div>
+    <div class="firework-container" id="fireworkContainer"></div>
+    
+    <div class="final-content">
+      <h2>Bugal… will you stay with me forever?</h2>
+      <p class="forever-text">You are my forever. Happy Valentine Week. 💕</p>
+      <p class="final-credit">— WITH ALL MY LOVE, Rahul —</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// ================= CONFIGURATION — EASY TO EDIT =================
+
+// Gallery photos — EDIT THIS ARRAY to add your own photos and captions
+const galleryPhotos = [
+  { src: "photo1.jpg", caption: "hamari sabse pyari photo jo tumhe bahut hi achcha lagata hai kyuki tum mujhe itne pyar se khila rahi ho jaanu ❤️" },
+  { src: "photo2.jpg", caption: "ye shayad hum dono ki recently best photo hai jo kitni pyari hai...i love you forever 🌹" },
+  { src: "photo3.jpg", caption: "best photo jisme hum dono kisi model se kam nahi lag rahe hai jaise ki hamara pre weading chal raha ho meri jaan 💕" }
+];
+
+// Valentine Week Timeline
+const timelineDays = [
+  { icon: "🌹", day: "Rose Day", date: "Feb 7", msg: "A single rose can be my garden... and you are my entire universe of roses, Bugal." },
+  { icon: "💍", day: "Propose Day", date: "Feb 8", msg: "I didn't just propose love — I proposed a lifetime of us, of laughter, of forever." },
+  { icon: "🍫", day: "Chocolate Day", date: "Feb 9", msg: "Life with you is sweeter than the finest chocolate. You are my sweetest addiction." },
+  { icon: "🧸", day: "Teddy Day", date: "Feb 10", msg: "Be my teddy to hold, my comfort on hard days, and my warmth on cold nights." },
+  { icon: "🤞", day: "Promise Day", date: "Feb 11", msg: "I promise to love you in every lifetime, in every universe, in every heartbeat." },
+  { icon: "🤗", day: "Hug Day", date: "Feb 12", msg: "In your arms, I found my safest place. Every hug from you heals my soul." },
+  { icon: "💋", day: "Kiss Day", date: "Feb 13", msg: "A kiss from you stops time and makes the whole world disappear into bliss." },
+  { icon: "❤️", day: "Valentine's Day", date: "Feb 14", msg: "You are not just my Valentine. You are my everything — today and always." }
+];
+
+// Why I Love You reasons
+const loveReasons = [
+  "I love the way you laugh — it lights up every dark corner of my world.",
+  "I love how you always know what I'm feeling, even when I can't say it.",
+  "I love your kindness — the way you care about everyone with such a pure heart.",
+  "I love our silly conversations that turn into the best memories.",
+  "I love the way you look at me — like I'm the only person in the room.",
+  "I love your strength — how you face everything with such grace and courage.",
+  "I love that with you, silence is never awkward — it's comfortable and warm.",
+  "I love you because you make me want to be a better person every single day."
+];
+
+// Love Quotes for ticker
+const loveQuotes = [
+  '"In all the world, there is no heart for me like yours." — Maya Angelou',
+  '"I have found the one whom my soul loves."',
+  '"You are my sun, my moon, and all my stars." — E.E. Cummings',
+  '"Whatever our souls are made of, his and mine are the same." — Emily Brontë',
+  '"I love you not only for what you are, but for what I am when I am with you."',
+  '"You are the finest, loveliest, tenderest person I have ever known."',
+  '"If I know what love is, it is because of you." — Hermann Hesse',
+  '"To love and be loved is to feel the sun from both sides."'
+];
+
+// Quiz questions
+const quizQuestions = [
+  {
+    q: "What is Rahul's favorite thing about Bugal?",
+    options: ["Her smile", "Her cooking", "Her dancing", "Her singing"],
+    correct: 0
+  },
+  {
+    q: "What is the password to this love story?",
+    options: ["1234", "0000", "1430", "1314"],
+    correct: 2
+  },
+  {
+    q: "Which day starts Valentine Week?",
+    options: ["Chocolate Day", "Rose Day", "Propose Day", "Hug Day"],
+    correct: 1
+  },
+  {
+    q: "What flower symbolizes our love in this gift?",
+    options: ["Lily", "Sunflower", "Rose", "Tulip"],
+    correct: 2
+  },
+  {
+    q: "What does Rahul want to say to Bugal forever?",
+    options: ["See you later", "I love you", "Goodbye", "Good morning"],
+    correct: 1
+  }
+];
+
+// Love letter text
+const loveLetter = `My dearest Bugal,
+
+There are some things I hold so deep inside my heart that words feel too small to carry them. But tonight, under the glow of a thousand invisible stars, I want to try.
+
+You came into my life like a soft melody — gentle, unexpected, and absolutely unforgettable. Before you, I didn't know what it meant to truly belong to someone. You taught me that love isn't just a word — it's a feeling that fills every breath, every thought, every quiet moment.
+
+I love the way your eyes light up when you're happy. I love the sound of your voice when you say my name. I love how you make ordinary days feel extraordinary just by being in them.
+
+Bugal, you are my peace in this chaotic world. You are the reason I believe in forever.
+
+This Valentine Week, I don't just want to give you flowers and chocolates. I want to give you my heart — completely, honestly, and endlessly.
+
+You are the love story I always dreamed of.
+
+Forever yours,
+Rahul ❤️`;
+
+
+// ================= PASSWORD LOGIC =================
+const CORRECT_PASSWORD = "1430";
+const passwordHints = [
+  "Hint: Think about a special number close to our hearts 💕",
+  "Hint: It's four digits that mean the world to us 🌹",
+  "Hint: Our love has a secret code... think harder 💭",
+  "Hint: 1 _ 3 _ ... what comes between? 💝"
+];
+let hintIndex = 0;
+
+document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function checkPassword() {
+  const input = document.getElementById('passwordInput').value;
+  if (input === CORRECT_PASSWORD) {
+    unlockSite();
+  } else {
+    const box = document.getElementById('passwordBox');
+    box.classList.add('shake');
+    setTimeout(() => box.classList.remove('shake'), 500);
+    document.getElementById('passwordHint').textContent = passwordHints[hintIndex % passwordHints.length];
+    hintIndex++;
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+function unlockSite() {
+  const flash = document.getElementById('whiteFlash');
+  flash.classList.add('active');
+  
+  setTimeout(() => {
+    document.getElementById('password-scene').classList.add('hidden');
+  }, 800);
+  
+  setTimeout(() => {
+    flash.classList.remove('active');
+    const main = document.getElementById('main-content');
+    main.style.display = 'block';
+    requestAnimationFrame(() => {
+      main.classList.add('visible');
+    });
+    document.getElementById('musicToggle').classList.add('visible');
+    startMusic();
+    initScene1();
+    initTimeline();
+    initGallery();
+    initLoveReasons();
+    initTicker();
+    initQuiz();
+    initFinalScene();
+    initScrollObservers();
+  }, 1600);
+}
+
+// ================= MUSIC CONTROL =================
+let musicPlaying = false;
+
+function startMusic() {
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.3;
+  music.play().then(() => {
+    musicPlaying = true;
+    document.getElementById('musicToggle').textContent = '🎵';
+  }).catch(() => {
+    musicPlaying = false;
+    document.getElementById('musicToggle').textContent = '🔇';
+  });
+}
+
+function toggleMusic() {
+  const music = document.getElementById('bgMusic');
+  if (musicPlaying) {
+    music.pause();
+    musicPlaying = false;
+    document.getElementById('musicToggle').textContent = '🔇';
+  } else {
+    music.play();
+    musicPlaying = true;
+    document.getElementById('musicToggle').textContent = '🎵';
+  }
+}
+
+// ================= CURSOR SPARKLE =================
+let lastSparkle = 0;
+document.addEventListener('mousemove', (e) => {
+  const now = Date.now();
+  if (now - lastSparkle < 50) return;
+  lastSparkle = now;
+  
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  sparkle.style.left = (e.clientX - 4) + 'px';
+  sparkle.style.top = (e.clientY - 4) + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 800);
+});
+
+// ================= CLICK HEART BURST =================
+document.addEventListener('click', (e) => {
+  for (let i = 0; i < 5; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-burst';
+    heart.textContent = ['❤️','💕','💖','💗','🌹'][Math.floor(Math.random()*5)];
+    heart.style.left = (e.clientX + (Math.random()-0.5)*40) + 'px';
+    heart.style.top = (e.clientY + (Math.random()-0.5)*20) + 'px';
+    heart.style.animationDelay = (Math.random()*0.3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1500);
+  }
+});
+
+// ================= SCENE 1 — HERO =================
+function initScene1() {
+  // Create petals
+  const petalContainer = document.getElementById('petalContainer');
+  for (let i = 0; i < 30; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.left = Math.random() * 100 + '%';
+    petal.style.animationDuration = (5 + Math.random() * 8) + 's';
+    petal.style.animationDelay = (Math.random() * 10) + 's';
+    petal.style.width = (10 + Math.random() * 15) + 'px';
+    petal.style.height = (10 + Math.random() * 15) + 'px';
+    petal.style.opacity = 0.3 + Math.random() * 0.4;
+    const hue = Math.random() > 0.5 ? 'var(--rose)' : 'var(--blush)';
+    petal.style.background = hue;
+    petalContainer.appendChild(petal);
+  }
+  
+  // Floating hearts
+  const heartsContainer = document.getElementById('floatingHearts');
+  for (let i = 0; i < 15; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = ['♥','♡','❤'][Math.floor(Math.random()*3)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (12 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+    heart.style.animationDelay = (Math.random() * 15) + 's';
+    heartsContainer.appendChild(heart);
+  }
+  
+  // Typewriter
+  const typewriterMsg = "Every love story is beautiful, but ours is my favorite. From the moment you entered my life, you painted it with colors I never knew existed. This Valentine Week is dedicated to you — my beautiful Bugal. 🌹";
+  typewriterEffect(typewriterMsg, 'typewriterText', 40);
+}
+
+function typewriterEffect(text, elementId, speed) {
+  const el = document.getElementById(elementId);
+  let i = 0;
+  el.innerHTML = '<span class="typewriter-cursor"></span>';
+  
+  function type() {
+    if (i < text.length) {
+      const cursor = el.querySelector('.typewriter-cursor');
+      el.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  setTimeout(type, 1500);
+}
+
+// ================= SCENE 2 — TIMELINE =================
+function initTimeline() {
+  const timeline = document.getElementById('timeline');
+  
+  timelineDays.forEach((day, index) => {
+    const item = document.createElement('div');
+    item.className = 'timeline-item';
+    item.innerHTML = `
+      ${index % 2 === 0 ? '' : '<div class="timeline-spacer"></div>'}
+      <div class="timeline-card">
+        <div class="day-icon">${day.icon}</div>
+        <h3>${day.day} <span style="font-size:0.8rem;opacity:0.6;font-weight:normal">${day.date}</span></h3>
+        <p>${day.msg}</p>
+      </div>
+      <div class="timeline-dot"></div>
+      ${index % 2 === 0 ? '<div class="timeline-spacer"></div>' : ''}
+    `;
+    timeline.appendChild(item);
+  });
+}
+
+// ================= SCENE 3 — GALLERY =================
+let currentSlide = 0;
+let slideshowInterval = null;
+let slideshowPaused = false;
+
+function initGallery() {
+  const wrapper = document.getElementById('slideshowWrapper');
+  const nav = document.getElementById('galleryNav');
+  
+  galleryPhotos.forEach((photo, index) => {
+    // Slide
+    const slide = document.createElement('div');
+    slide.className = 'slide' + (index === 0 ? ' active' : '');
+    slide.innerHTML = `
+      <img src="${photo.src}" alt="Memory ${index + 1}" loading="lazy">
+      <div class="slide-caption"><p>${photo.caption}</p></div>
+    `;
+    wrapper.appendChild(slide);
+    
+    // Nav dot
+    const dot = document.createElement('button');
+    dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
+    dot.onclick = (e) => { e.stopPropagation(); goToSlide(index); };
+    nav.appendChild(dot);
+  });
+  
+  // Gallery floating hearts
+  const heartsEl = document.getElementById('galleryHearts');
+  for (let i = 0; i < 8; i++) {
+    const h = document.createElement('div');
+    h.className = 'floating-heart';
+    h.textContent = '♡';
+    h.style.left = Math.random() * 100 + '%';
+    h.style.fontSize = (10 + Math.random() * 14) + 'px';
+    h.style.color = 'var(--rose)';
+    h.style.animationDuration = (6 + Math.random() * 8) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    heartsEl.appendChild(h);
+  }
+  
+  startSlideshow();
+  
+  // Touch/swipe support
+  let touchStartX = 0;
+  wrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  wrapper.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goToSlide((currentSlide + 1) % galleryPhotos.length);
+      else goToSlide((currentSlide - 1 + galleryPhotos.length) % galleryPhotos.length);
+    }
+  }, { passive: true });
+}
+
+function startSlideshow() {
+  slideshowInterval = setInterval(() => {
+    if (!slideshowPaused) {
+      goToSlide((currentSlide + 1) % galleryPhotos.length);
+    }
+  }, 4000);
+}
+
+function goToSlide(index) {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.gallery-dot');
+  
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  
+  currentSlide = index;
+  
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function openFullscreen() {
+  const overlay = document.getElementById('fullscreenOverlay');
+  document.getElementById('fullscreenImg').src = galleryPhotos[currentSlide].src;
+  document.getElementById('fullscreenCaption').textContent = galleryPhotos[currentSlide].caption;
+  overlay.classList.add('active');
+  slideshowPaused = true;
+}
+
+function closeFullscreen() {
+  document.getElementById('fullscreenOverlay').classList.remove('active');
+  slideshowPaused = false;
+}
+
+// ================= SCENE 4 — EMOTIONAL =================
+function initLoveReasons() {
+  const container = document.getElementById('loveReasons');
+  loveReasons.forEach((reason) => {
+    const item = document.createElement('div');
+    item.className = 'reason-item';
+    item.innerHTML = `
+      <span class="reason-heart">💗</span>
+      <p class="reason-text">${reason}</p>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function initTicker() {
+  const track = document.getElementById('tickerTrack');
+  // Duplicate for seamless loop
+  const allQuotes = [...loveQuotes, ...loveQuotes];
+  allQuotes.forEach(quote => {
+    const item = document.createElement('span');
+    item.className = 'ticker-item';
+    item.textContent = quote;
+    track.appendChild(item);
+  });
+}
+
+// ================= SCENE 5 — QUIZ =================
+let quizIndex = 0;
+let quizScore = 0;
+
+function initQuiz() {
+  showQuestion();
+}
+
+function showQuestion() {
+  if (quizIndex >= quizQuestions.length) {
+    showQuizResult();
+    return;
+  }
+  
+  const q = quizQuestions[quizIndex];
+  document.getElementById('quizQuestion').textContent = q.q;
+  document.getElementById('quizProgressBar').style.width = ((quizIndex / quizQuestions.length) * 100) + '%';
+  
+  const optionsEl = document.getElementById('quizOptions');
+  optionsEl.innerHTML = '';
+  
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(i, btn);
+    optionsEl.appendChild(btn);
+  });
+}
+
+function selectAnswer(index, btn) {
+  const q = quizQuestions[quizIndex];
+  const allBtns = document.querySelectorAll('.quiz-option');
+  allBtns.forEach(b => b.style.pointerEvents = 'none');
+  
+  if (index === q.correct) {
+    btn.classList.add('correct');
+    quizScore++;
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+  }
+  
+  setTimeout(() => {
+    quizIndex++;
+    showQuestion();
+  }, 1200);
+}
+
+function showQuizResult() {
+  document.getElementById('quizContent').style.display = 'none';
+  const result = document.getElementById('quizResult');
+  result.style.display = 'block';
+  document.getElementById('scoreText').textContent = `${quizScore}/${quizQuestions.length} ❤️`;
+  document.getElementById('quizProgressBar').style.width = '100%';
+  
+  // Heart burst celebration
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart-burst';
+      heart.textContent = ['❤️','💕','💖','🌹','✨'][Math.floor(Math.random()*5)];
+      const rect = document.getElementById('quizContainer').getBoundingClientRect();
+      heart.style.left = (rect.left + Math.random() * rect.width) + 'px';
+      heart.style.top = (rect.top + Math.random() * rect.height) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1500);
+    }, i * 100);
+  }
+}
+
+function restartQuiz() {
+  quizIndex = 0;
+  quizScore = 0;
+  document.getElementById('quizContent').style.display = 'block';
+  document.getElementById('quizResult').style.display = 'none';
+  showQuestion();
+}
+
+// ================= SCENE 6 — LOVE LETTER =================
+function openLetter() {
+  const modal = document.getElementById('letterModal');
+  modal.classList.add('active');
+  animateLetter();
+}
+
+function closeLetter() {
+  document.getElementById('letterModal').classList.remove('active');
+}
+
+function animateLetter() {
+  const el = document.getElementById('letterText');
+  el.innerHTML = '';
+  
+  const lines = loveLetter.split('\n');
+  let totalDelay = 0;
+  
+  lines.forEach((line) => {
+    const lineEl = document.createElement('div');
+    lineEl.style.marginBottom = '8px';
+    lineEl.style.minHeight = '1.2em';
+    
+    if (line.trim() === '') {
+      lineEl.innerHTML = '<br>';
+      el.appendChild(lineEl);
+      totalDelay += 200;
+      return;
+    }
+    
+    for (let i = 0; i < line.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = line[i];
+      span.style.opacity = '0';
+      span.style.animationDelay = totalDelay + 'ms';
+      span.style.animation = `letterReveal 0.05s ease ${totalDelay}ms forwards`;
+      lineEl.appendChild(span);
+      totalDelay += 20;
+    }
+    
+    el.appendChild(lineEl);
+    totalDelay += 100;
+  });
+}
+
+// ================= FINAL SCENE =================
+function initFinalScene() {
+  // Floating petals in final scene
+  const roseFill = document.getElementById('finalRoseFill');
+  for (let i = 0; i < 40; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.left = Math.random() * 100 + '%';
+    petal.style.animationDuration = (4 + Math.random() * 8) + 's';
+    petal.style.animationDelay = (Math.random() * 10) + 's';
+    petal.style.width = (12 + Math.random() * 18) + 'px';
+    petal.style.height = (12 + Math.random() * 18) + 'px';
+    petal.style.opacity = 0.4 + Math.random() * 0.3;
+    roseFill.appendChild(petal);
+  }
+}
+
+function launchFireworks() {
+  const container = document.getElementById('fireworkContainer');
+  const colors = ['#ff6b9d', '#c44569', '#e8a0bf', '#f8c8dc', '#ffb6c1', '#ffd700', '#ff69b4'];
+  
+  for (let f = 0; f < 8; f++) {
+    setTimeout(() => {
+      const cx = Math.random() * window.innerWidth;
+      const cy = Math.random() * window.innerHeight * 0.6;
+      
+      for (let p = 0; p < 30; p++) {
+        const particle = document.createElement('div');
+        particle.className = 'firework';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.left = cx + 'px';
+        particle.style.top = cy + 'px';
+        particle.style.boxShadow = `0 0 6px ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        const angle = (Math.PI * 2 / 30) * p;
+        const distance = 50 + Math.random() * 100;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        particle.style.transition = `all ${0.8 + Math.random() * 0.5}s ease-out`;
+        container.appendChild(particle);
+        
+        requestAnimationFrame(() => {
+          particle.style.left = (cx + tx) + 'px';
+          particle.style.top = (cy + ty) + 'px';
+          particle.style.opacity = '0';
+          particle.style.transform = 'scale(0)';
+        });
+        
+        setTimeout(() => particle.remove(), 2000);
+      }
+    }, f * 500);
+  }
+}
+
+// ================= SCROLL OBSERVERS =================
+function initScrollObservers() {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  // Timeline items
+  document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+  
+  // Love reasons
+  document.querySelectorAll('.reason-item').forEach(item => observer.observe(item));
+  
+  // Final scene fireworks trigger
+  const finalObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        launchFireworks();
+        // Keep launching periodically
+        setInterval(launchFireworks, 4000);
+        finalObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const finalScene = document.getElementById('finalScene');
+  if (finalScene) finalObserver.observe(finalScene);
+}
+
+// ================= AUTO-FOCUS PASSWORD INPUT =================
+window.addEventListener('load', () => {
+  document.getElementById('passwordInput').focus();
+});
+</script>
+
+</body>
+</html>
